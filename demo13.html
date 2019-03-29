@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件介绍-事件对象</title>
+    <style>
+        div{
+            float: left;
+            width: 25%;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    for(var i = 0; i < 16; i++){
+        var myDiv = document.createElement("div");
+        document.body.appendChild(myDiv);
+    }
+    function random(number){
+        return Math.floor(Math.random() * number);
+    }
+    function bgChange(){
+        var rndCol = "rgb(" + random(255) + ","+ random(255) + "," + random(255) + ")";
+        return rndCol;
+    }
+
+    var divs = document.querySelectorAll("div");
+
+    //在函数中包括一个事件对象e，并在函数中设置背景颜色样式在e.target上
+    //当您要在多个元素上设置相同的事件处理程序时，e.target非常有用
+    for( var i = 0; i < divs.length; i++){
+        divs[i].onclick = function(e){
+            e.target.style.backgroundColor = bgChange();
+        }
+    }
+</script>
+</body>
+</html>
